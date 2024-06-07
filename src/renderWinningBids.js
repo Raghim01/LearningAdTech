@@ -29,8 +29,41 @@
 
 
 
+import { createHook } from "./processes.js";
 
+function trackEvents(){
+    pbjs.onEvent('bidWon', function(data) {
+        // debugger
+    })
+}
+trackEvents()
+
+export const createIframeProcess = createHook('sync', _createIframe)
+
+function _createIframe(width,height) {
+    const iframe = document.createElement('iframe');
+    iframe.width = width + 'px';
+    iframe.height = height + 'px';
+    iframe.style.overflow = 'hidden';
+    iframe.style.border = '0';
+    iframe.scrolling = 'no';
+
+
+    iframe.srcdoc = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <title>Ad</title>
+            </head>
+            <body></body>
+            </html>
+        `;
+    return iframe
+}
 export function renderWinningBids() {
+
+
+
     const winningBids = pbjs.getHighestCpmBids();
 
     if (!winningBids || winningBids.length === 0) {
@@ -52,27 +85,14 @@ export function renderWinningBids() {
         }
 
         adContainer.innerHTML = '';
-
-        const iframe = document.createElement('iframe');
-        iframe.width = bid.width + 'px';
-        iframe.height = bid.height + 'px';
-        iframe.style.overflow = 'hidden';
-        iframe.style.border = '0';
-        iframe.scrolling = 'no';
-
         if (!bid.ad) {
             console.warn(`No ad content found for ad unit code ${adUnitCode}.`);
             return;
         }
-        iframe.srcdoc = `
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <title>Ad</title>
-            </head>
-            <body>${bid.ad}</body>
-            </html>
-        `;
-        adContainer.appendChild(iframe);
+        const iframe = createIframeProcess(bid.width,bid.height)
+        // import.meta.env.VITE_ADD_RED_FRAME==='1' && addRedFrameToElement(iframe)
+        adContainer.appendChild(iframe)
+
+        pbjs.renderAd(iframe.contentWindow.document, bid.adId);
     });
 }

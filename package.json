@@ -13,6 +13,7 @@
     "vite-plugin-inspect": "^0.8.4"
   },
   "dependencies": {
+    "fun-hooks": "^1.0.4",
     "modern-normalize": "^2.0.0"
   }
 }
