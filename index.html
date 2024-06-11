@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <script  defer src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
-  <script type="module" src="/main.js" defer></script>
-  <title>Ad</title>
-</head>
+  <head>
+    <script
+      defer
+      src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"
+    ></script>
+    <script type="module" src="/main.js" defer></script>
+    <title>Ad</title>
+  </head>
 
-<body>
-<h2>Manual Prebid.js Example</h2>
+  <body>
+    <h2>Manual Prebid.js Example</h2>
 
-<a href="./example.html">Example</a>
+    <!-- <a href="./example.html">Example</a> -->
 
-<h5>Div-1</h5>
-<div id='div-1'>
+    <h5>Div-1</h5>
+    <div id="div-1"></div>
+    <script>
+      window.wrapper = window.wrapper || {};
+      wrapper.cmd = wrapper.cmd || [];
 
-</div>
-<script>
-  wrapper.auctionForPlacement('div-1')
-</script>
-<br>
+      wrapper.cmd.push(() => {
+        wrapper.auctionForPlacement("div-1");
+      });
 
-<h5>Div-2</h5>
-<div id='div-2'></div>
+      wrapper.cmd.push(() => {
+        wrapper.auctionForPlacement("div-2");
+      });
 
-</body>
+      wrapper.cmd.push(() => {
+        wrapper.showConsole();
+      });
+    </script>
+    <br />
+
+    <h5>Div-2</h5>
+    <div id="div-2"></div>
+  </body>
 </html>
