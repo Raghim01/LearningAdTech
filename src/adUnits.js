@@ -1,35 +1,36 @@
-export const adUnitsF =(div_1_sizes, div_2_sizes)=> {
-    return(
-    [
-        {
-            code: 'div-1',
-            mediaTypes: {
-                banner: {
-                    sizes: div_1_sizes
-                }
-            },
-            bids: [{
-                bidder: 'adtelligent',
-                params: {
-                    aid: 350975
-                }
-            }]
+export const adUnitsF = (elementId, div_1_sizes, div_2_sizes) => {
+  return [
+    {
+      code: elementId,
+      mediaTypes: {
+        banner: {
+          sizes: div_1_sizes,
         },
+      },
+      bids: [
         {
-            code: 'div-2',
-            mediaTypes:
-                {
-                    banner: {
-                        sizes: div_2_sizes
-                    }
-                }
-            ,
-            bids: [{
-                bidder: 'adtelligent',
-                params: {
-                    aid: 350975
-                }
-            }]
-        }
-    ])
-}
+          bidder: "adtelligent",
+          params: {
+            aid: 350975,
+          },
+        },
+      ],
+    },
+    {
+      code: elementId,
+      mediaTypes: {
+        banner: {
+          sizes: div_2_sizes,
+        },
+      },
+      bids: [
+        {
+          bidder: "adtelligent",
+          params: {
+            aid: 350975,
+          },
+        },
+      ],
+    },
+  ];
+};
