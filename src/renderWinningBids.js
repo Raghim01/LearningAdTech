@@ -29,12 +29,7 @@
 
 import { createHook } from "./processes.js";
 
-function trackEvents() {
-  pbjs.onEvent("bidWon", function (data) {
-    // debugger
-  });
-}
-trackEvents();
+
 
 export const createIframeProcess = createHook("sync", _createIframe);
 

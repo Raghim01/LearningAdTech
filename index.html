@@ -10,28 +10,34 @@
   </head>
 
   <body>
+  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+  <script>
+    window.googletag = window.googletag || { cmd: [] };
+
+    googletag.cmd.push(() => {
+      // Define an ad slot for div with id "banner-ad".
+      googletag
+              .defineSlot("/6355419/Travel/Europe/France/Paris", [300, 250], "div-1")
+              .addService(googletag.pubads());
+
+      // Enable the PubAdsService.
+      googletag.enableServices();
+    });
+  </script>
     <h2>Manual Prebid.js Example</h2>
 
     <!-- <a href="./example.html">Example</a> -->
 
     <h5>Div-1</h5>
-    <div id="div-1"></div>
-    <script>
-      window.wrapper = window.wrapper || {};
-      wrapper.cmd = wrapper.cmd || [];
+    <div id="div-1">
+      <script>
+        googletag.cmd.push(() => {
+          // Request and render an ad for the "banner-ad" slot.
+          googletag.display("div-1");
+        });
+      </script>
+    </div>
 
-      wrapper.cmd.push(() => {
-        wrapper.auctionForPlacement("div-1");
-      });
-
-      wrapper.cmd.push(() => {
-        wrapper.auctionForPlacement("div-2");
-      });
-
-      wrapper.cmd.push(() => {
-        wrapper.showConsole();
-      });
-    </script>
     <br />
 
     <h5>Div-2</h5>
