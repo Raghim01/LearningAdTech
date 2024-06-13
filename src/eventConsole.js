@@ -11,7 +11,7 @@ const eventLogs = [];
 export function logEvent(eventType, args) {
   const eventLog = {
     time: new Date(),
-    placement: args.adUnitCode || "N/A",
+    placement: args.adUnitCode || args.adUnitCodes || "N/A",
     eventType,
     description: eventType,
     arguments: JSON.stringify({
@@ -72,9 +72,14 @@ export function renderConsole() {
   consoleElement.appendChild(table);
 }
 
-pbjs.onEvent("auctionInit", (args) => logEvent("auctionInit", args));
-pbjs.onEvent("auctionEnd", (args) => logEvent("auctionEnd", args));
-pbjs.onEvent("bidWon", (args) => logEvent("bidWon", args));
+window.pbjs.que.push(()=>{
+  pbjs.onEvent("auctionInit", (args) =>{
+    logEvent("auctionInit", args)
+  });
+  pbjs.onEvent("auctionEnd", (args) => logEvent("auctionEnd", args));
+  pbjs.onEvent("bidWon", (args) => logEvent("bidWon", args));
+})
+
 
 export function showConsole() {
   renderConsole();

@@ -1,5 +1,6 @@
-export default (function () {
+(function () {
   let queueProcessed = false;
+
   function processQueue() {
     if (queueProcessed) return;
     while (wrapper.cmd.length > 0) {
@@ -11,6 +12,8 @@ export default (function () {
 
     queueProcessed = true;
   }
+
+  document.addEventListener("DOMContentLoaded", processQueue);
 
   document.addEventListener("DOMContentLoaded", processQueue);
 })();

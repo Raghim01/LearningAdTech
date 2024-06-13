@@ -1,7 +1,7 @@
-export const adUnitsF = (elementId, div_1_sizes, div_2_sizes) => {
+export const adUnitsF = (div_1_sizes, div_2_sizes) => {
   return [
     {
-      code: elementId,
+      code: 'div-1',
       mediaTypes: {
         banner: {
           sizes: div_1_sizes,
@@ -17,7 +17,7 @@ export const adUnitsF = (elementId, div_1_sizes, div_2_sizes) => {
       ],
     },
     {
-      code: elementId,
+      code: 'div-2',
       mediaTypes: {
         banner: {
           sizes: div_2_sizes,
