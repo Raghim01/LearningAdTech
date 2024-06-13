@@ -28,6 +28,9 @@ export function logEvent(eventType, args) {
   if (eventLog.placement !== "N/A") {
     eventLogs.push(eventLog);
   }
+
+  console.log(eventLogs);
+
   renderConsole();
 }
 

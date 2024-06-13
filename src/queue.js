@@ -13,12 +13,4 @@ export default (function () {
   }
 
   document.addEventListener("DOMContentLoaded", processQueue);
-
-  wrapper.pushCommand = function (command) {
-    if (queueProcessed) {
-      command();
-    } else {
-      wrapper.cmd.push(command);
-    }
-  };
 })();
